@@ -18,6 +18,7 @@
   /* ---- COLORS VARS ---- */
   --primary-bg: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
   --primary-color: #213547;
+  --main-color: #dc9a00;
 
   /* ---- COLORS ----- */
   color-scheme: light dark;
@@ -29,7 +30,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--main-color);
   text-decoration: inherit;
 }
 
@@ -70,7 +71,7 @@ button {
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: var(--main-color);
 }
 
 button:focus,
@@ -78,7 +79,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --primary-bg: #242424;
     --primary-color: rgba(255, 255, 255, 0.87);
@@ -91,4 +92,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-} */
+}

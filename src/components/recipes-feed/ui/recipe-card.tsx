@@ -12,7 +12,7 @@ export const RecipeCard: React.FC<{
         <div className="pt-3 flex items-center justify-between">
           <p className="text-white">{title}</p>
           <svg
-            className="h-6 w-6 fill-current text-gray-500 hover:text-black"
+            className="h-6 w-6 fill-current text-yellow-500 hover:text-black"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -20,7 +20,7 @@ export const RecipeCard: React.FC<{
           </svg>
         </div>
         {!!description && (
-          <p className="pt-1 text-gray-900 line-clamp-3">{description}</p>
+          <p className="pt-1 text-white line-clamp-3">{description}</p>
         )}
       </a>
     </div>
