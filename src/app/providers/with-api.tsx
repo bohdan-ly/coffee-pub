@@ -1,7 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { useDebounceCallback } from "@react-hook/debounce";
 import LoadingBar, { LoadingBarRef } from "react-top-loading-bar";
 import { useDispatch, useSelector } from "react-redux";
 import { Api } from "app/model/api";
+import { fetchCategories } from "store/categories/slice";
+import { AppDispatch } from "app/model";
 // import { getUser } from "~selectors/userSelectors";
 // import useEventListener from "~shared/hooks/useEvents";
 // import { AppActions } from "./actions/appActions";
@@ -9,10 +12,8 @@ import { Api } from "app/model/api";
 export const ConnectAPI: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // const progressRef = useRef<LoadingBarRef>({});
-
-  const [progress, _setProgress] = useState(0);
-  const [networkRequestThread, setNetworkRequestThread] = useState<
+  const [progress, _setProgress] = React.useState(0);
+  const [networkRequestThread, setNetworkRequestThread] = React.useState<
     NodeJS.Timeout | string
   >("");
 
@@ -24,7 +25,7 @@ export const ConnectAPI: React.FC<{ children: React.ReactNode }> = ({
     else _setProgress(val);
   };
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   // const { syncKanbanBoardsData } = AppActions(dispatch);
 
@@ -32,7 +33,7 @@ export const ConnectAPI: React.FC<{ children: React.ReactNode }> = ({
   //   window.clearTimeout(networkRequestThread);
   // });
 
-  useEffect(() => {
+  React.useEffect(() => {
     console.log("Init api...");
 
     if (!user || !user.token || !user.isLoggedIn) {
@@ -53,8 +54,8 @@ export const ConnectAPI: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchNecessaryData = async () => {
     console.log("Fetching necessary data...");
-    const { categories } = (await Api.Categories.getCategories()) || {};
-    console.log(categories);
+
+    dispatch(fetchCategories({}));
 
     setProgress(100);
   };
@@ -62,7 +63,6 @@ export const ConnectAPI: React.FC<{ children: React.ReactNode }> = ({
   return (
     <>
       <LoadingBar
-        //   ref={progressRef}
         progress={progress}
         height={progress === 0 ? 0 : 3}
         color="#FE753F"
