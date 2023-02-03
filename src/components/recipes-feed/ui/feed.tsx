@@ -1,4 +1,7 @@
+import { Api } from "app/model/api";
 import React from "react";
+import { useAppSelector } from "shared/hooks/global";
+import { selectCategories } from "store/categories/selector";
 import { FeedToolbar } from "./feed-toolbar";
 import { RecipeCard } from "./recipe-card";
 
@@ -16,23 +19,18 @@ type Meal = {
 };
 
 export const Recipes = () => {
-  const [categories, setCategories] = React.useState<MealCategory[]>([]);
+  const { items: categories, status } = useAppSelector(selectCategories);
+
   const [meals, setMeals] = React.useState<Meal[]>([]);
 
   const syncFeed = async () => {
-    const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/categories.php"
-    );
     const resFood = await fetch(
       "https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood"
     );
 
-    const formatted = await res.json();
     const formattedFood = await resFood.json();
 
-    console.log(formatted);
     console.log(formattedFood);
-    setCategories(formatted.categories);
     setMeals(formattedFood.meals);
   };
 
