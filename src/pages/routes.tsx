@@ -3,6 +3,8 @@ import { Navigate, useRoutes } from "react-router-dom";
 
 import { PATHS } from "shared/navigation";
 
+import MainPage from "pages/main";
+
 // import { AccessDeniedPage } from "./access-denied";
 // import { ServerErrorPage } from "./server-error";
 
@@ -16,8 +18,6 @@ const lazyLoad = (loadedModule: () => Promise<{ default: React.FC }>) =>
       return err;
     })
   );
-
-const MainPage = lazyLoad(() => import("./main"));
 
 const routesMap = [
   {

@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, useNavigate } from "react-router-dom";
+import { BrowserRouter, useNavigate } from "react-router-dom";
 
 import { setNavigate } from "shared/navigation";
 
@@ -12,9 +12,9 @@ const NavigationSetter: React.FC = () => {
 export const withRouter = (component: () => React.ReactNode) =>
   function WithRouter() {
     return (
-      <HashRouter>
+      <BrowserRouter basename="/">
         {component()}
         <NavigationSetter />
-      </HashRouter>
+      </BrowserRouter>
     );
   };
