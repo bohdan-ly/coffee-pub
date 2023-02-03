@@ -14,4 +14,5 @@ export enum Status {
 export interface CategoriesSliceState {
   items: Category[];
   status: Status;
+  selectedCategoryId: null | string;
 }

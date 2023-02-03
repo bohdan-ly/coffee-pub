@@ -1,10 +1,9 @@
 import React from "react";
-import { useDebounceCallback } from "@react-hook/debounce";
-import LoadingBar, { LoadingBarRef } from "react-top-loading-bar";
-import { useDispatch, useSelector } from "react-redux";
-import { Api } from "app/model/api";
+import LoadingBar from "react-top-loading-bar";
+import { useAppDispatch } from "shared/hooks/global";
 import { fetchCategories } from "store/categories/slice";
-import { AppDispatch } from "app/model";
+import { Category } from "store/categories/types";
+import { fetchRecipes } from "store/recipes/slice";
 // import { getUser } from "~selectors/userSelectors";
 // import useEventListener from "~shared/hooks/useEvents";
 // import { AppActions } from "./actions/appActions";
@@ -25,7 +24,7 @@ export const ConnectAPI: React.FC<{ children: React.ReactNode }> = ({
     else _setProgress(val);
   };
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   // const { syncKanbanBoardsData } = AppActions(dispatch);
 
@@ -55,7 +54,15 @@ export const ConnectAPI: React.FC<{ children: React.ReactNode }> = ({
   const fetchNecessaryData = async () => {
     console.log("Fetching necessary data...");
 
-    dispatch(fetchCategories({}));
+    const { payload: categoriesPayload } = await dispatch(fetchCategories({}));
+
+    setProgress(50);
+
+    await dispatch(
+      fetchRecipes({
+        strCategory: (categoriesPayload as Category[])[0].strCategory,
+      })
+    );
 
     setProgress(100);
   };

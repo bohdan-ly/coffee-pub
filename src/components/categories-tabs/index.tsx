@@ -1,0 +1,1 @@
+export { CategoriesTabs } from "./overlay";

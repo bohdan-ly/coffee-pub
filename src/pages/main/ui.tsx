@@ -1,30 +1,23 @@
-import React from "react";
 import Header from "components/header";
-import RecipeCard from "components/recipe-card";
-import { Recipes } from "components/recipes-feed";
+import RecipeDetails from "components/recipe-details";
+import { RecipesDiscover } from "components/recipes-discover";
+import { RecipesFeed } from "components/recipes-feed";
 import SearchBar from "components/search-bar";
-import { CategoriesCard } from "components/categories-card/ui";
+import React from "react";
 
 export const MainPage: React.FC = () => {
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col overflow-hidden">
       <Header />
 
-      <section className="p-8">
+      <section className="flex flex-col h-full md:overflow-hidden p-8 overflow-y-auto">
         <div className="flex flex-row justify-center">
           <div className="md:basis-2/4">
             <SearchBar />
-            <br/>
+            <br />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="md:basis-3/4">
-            <CategoriesCard />
-          </div>
-          <div className="md:basis-1/4">
-            <RecipeCard />
-          </div>
-        </div>
+        <RecipesDiscover />
       </section>
     </div>
   );

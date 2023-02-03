@@ -17,5 +17,8 @@ export default defineConfig((args) => {
       tsconfigPaths(),
       react(),
     ],
+    build: {
+      sourcemap: true,
+    },
   };
 });
