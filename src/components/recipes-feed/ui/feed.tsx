@@ -1,3 +1,4 @@
+import { Api } from "app/model/api";
 import React from "react";
 import { FeedToolbar } from "./feed-toolbar";
 import { RecipeCard } from "./recipe-card";
@@ -20,19 +21,16 @@ export const Recipes = () => {
   const [meals, setMeals] = React.useState<Meal[]>([]);
 
   const syncFeed = async () => {
-    const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/categories.php"
-    );
+    const res = await Api.Categories.getCategories();
     const resFood = await fetch(
       "https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood"
     );
 
-    const formatted = await res.json();
     const formattedFood = await resFood.json();
 
-    console.log(formatted);
+    console.log(res);
     console.log(formattedFood);
-    setCategories(formatted.categories);
+    setCategories(res.categories);
     setMeals(formattedFood.meals);
   };
 
