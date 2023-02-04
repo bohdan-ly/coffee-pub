@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Api } from "app/model/api";
 import { Category, CategoriesSliceState, Status } from "./types";
 
@@ -12,6 +12,7 @@ export const fetchCategories = createAsyncThunk<
 
 const initialState: CategoriesSliceState = {
   items: [],
+  selectedCategoryId: null,
   status: Status.LOADING, // loading | success | error
 };
 
@@ -22,6 +23,9 @@ export const categoriesSlice = createSlice({
     setItems: (state, action) => {
       state.items = action.payload;
     },
+    setCategoryId: (state, action: PayloadAction<string>) => {
+      state.selectedCategoryId = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCategories.pending, (state, action) => {
@@ -31,6 +35,7 @@ export const categoriesSlice = createSlice({
     });
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
       state.items = action.payload;
+      state.selectedCategoryId = action.payload[0].idCategory;
       state.status = Status.SUCCESS;
     });
     builder.addCase(fetchCategories.rejected, (state, action) => {
@@ -41,6 +46,6 @@ export const categoriesSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setItems } = categoriesSlice.actions;
+export const { setItems, setCategoryId } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

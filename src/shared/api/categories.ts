@@ -3,7 +3,7 @@ import { Api } from "app/model/api";
 import { MEAL_API } from "constants";
 import { ApiAbortController } from "shared/utils/abort-controller";
 
-class ApiCategories {
+export class ApiCategories {
   static async getCategories() {
     try {
       const json = await Api.fetchRetry(`${MEAL_API}/categories.php`, {
@@ -23,5 +23,3 @@ class ApiCategories {
     }
   }
 }
-
-export default ApiCategories;

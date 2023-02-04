@@ -2,8 +2,10 @@ import { RootState } from "app/model";
 
 const selectCategories = (state: RootState) => ({ ...state.categories });
 
-const selectCategoryById = (id: string) => (state: RootState) => ({
-  item: state.categories.items.find((el) => el.idCategory === id),
-});
+const selectCategoryId = (state: RootState) =>
+  state.categories.selectedCategoryId;
 
-export { selectCategories, selectCategoryById };
+const selectCategoryById = (id: string) => (state: RootState) =>
+  state.categories.items.find((el) => el.idCategory === id);
+
+export { selectCategories, selectCategoryId, selectCategoryById };
