@@ -9,6 +9,7 @@
   font-weight: 400;
   overflow: hidden;
   height: 100%;
+  scroll-behavior: smooth;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,7 +28,6 @@
   color: var(--primary-color);
   background-image: var(--primary-bg);
   min-height: 100vh;
-
 }
 
 a {
@@ -97,4 +97,12 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.header {
+  background-image: url(./assets/top-image3.jpg);
+}
+
+.content {
+  height: 100vh;
 }

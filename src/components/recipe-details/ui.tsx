@@ -24,18 +24,20 @@ export const RecipeDetails = () => {
           : "md:basis-1/3 opacity-100"
       }`}
     >
-      {!!recipe.strMealThumb && (
-        <CloseIcon
-          className="absolute -right-4 -top-4 w-8 cursor-pointer rounded-full hover:bg-yellow-600"
-          onClick={handleCloseRecipe}
-        />
-      )}
       <div className="flex justify-center overflow-y-auto">
         <div className="rounded-lg shadow-lg bg-white max-w-sm">
           <div className="bg-slate-100 dark:bg-black/[.90] bg-fixed">
-            <h3 className="text-3xl font-bold dark:text-white p-1.5 flex justify-center">
-              {recipe.strMeal}
-            </h3>
+            <div className="flex flex-row justify-between ">
+              <h3 className="text-3xl font-bold dark:text-white p-1.5">
+                {recipe.strMeal}
+              </h3>
+              {!!recipe.strMealThumb && (
+                <CloseIcon
+                  className="w-6 pr-1.5 cursor-pointer rounded-full hover:text-yellow-600"
+                  onClick={handleCloseRecipe}
+                />
+              )}
+            </div>
             <a href="#">
               <YoutubeEmbed
                 url={recipe.strYoutube}
