@@ -4,11 +4,19 @@ export type Recipe = {
   strMealThumb: string;
 };
 
+export type Ingredients = Record<string, string>;
+
 export type RecipeDetails = {
   idMeal: string;
   strMeal: string;
   strMealThumb: string;
   strYoutube: string;
+  tags: string[];
+  strArea: string;
+  strCategory: string;
+  strInstructions: string;
+  ingredients: Ingredients;
+  strSource: string;
 };
 
 export enum Status {

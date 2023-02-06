@@ -2,7 +2,7 @@ import React from "react";
 
 export const FeedToolbar = () => {
   return (
-    <nav id="store" className="w-full z-30 top-0 px-6 py-1">
+    <nav id="store" className="w-full z-1 top-0 px-6 py-1">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
         <a
           className="uppercase tracking-wide no-underline hover:no-underline font-bold  text-xl "
@@ -12,12 +12,9 @@ export const FeedToolbar = () => {
         </a>
 
         <div className="flex items-center" id="store-nav-content">
-          <a
-            className="pl-3 inline-block no-underline hover:text-black"
-            href="#"
-          >
+          <a className="pl-3 inline-block no-underline cursor-pointer">
             <svg
-              className="fill-current hover:text-black"
+              className="fill-current"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -27,12 +24,9 @@ export const FeedToolbar = () => {
             </svg>
           </a>
 
-          <a
-            className="pl-3 inline-block no-underline hover:text-black"
-            href="#"
-          >
+          <a className="pl-3 inline-block no-underline cursor-pointer" href="#">
             <svg
-              className="fill-current hover:text-black"
+              className="fill-current "
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"

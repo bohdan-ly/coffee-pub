@@ -12,6 +12,8 @@ export const PATHS = {
   root: "/",
   main: {
     root: "/main",
+    fridge: "/fridge",
+    recipe: "/recipe/:recipeId",
   },
   error: {
     root: "/error",
