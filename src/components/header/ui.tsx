@@ -89,11 +89,14 @@ export const Header = () => {
           </a>
 
           <a
-            className="pl-3 inline-block no-underline hover:text-black"
-            href="#"
+            className="pl-3 inline-block no-underline cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/shop");
+            }}
           >
             <svg
-              className="fill-current hover:text-black"
+              className="fill-current"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"

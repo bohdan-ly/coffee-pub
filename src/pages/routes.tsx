@@ -21,6 +21,7 @@ const lazyLoad = (loadedModule: () => Promise<{ default: React.FC }>) =>
 
 const RecipePage = lazyLoad(() => import("./recipe"));
 const FridgePage = lazyLoad(() => import("./fridge"));
+const ShopPage = lazyLoad(() => import("./shop"));
 
 const routesMap = [
   {
@@ -38,6 +39,10 @@ const routesMap = [
   {
     path: PATHS.main.fridge,
     element: <FridgePage />,
+  },
+  {
+    path: PATHS.main.shop,
+    element: <ShopPage />,
   },
   {
     path: PATHS.error.accessDenied,

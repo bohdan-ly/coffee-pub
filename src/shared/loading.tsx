@@ -1,8 +1,8 @@
 import React from "react";
 
-export const Loading = () => {
+export const Loading: React.FC<{ className?: string }> = ({ className }) => {
   return (
-    <div role="status">
+    <div className={className || ""} role="status">
       <svg
         aria-hidden="true"
         className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
