@@ -26,7 +26,7 @@ export const Header = () => {
           id="menu"
         >
           <nav>
-            <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
+            <ul className="md:flex items-center justify-between text-base pt-4 md:pt-0">
               <li>
                 <a
                   className="inline-block no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
@@ -35,7 +35,7 @@ export const Header = () => {
                     navigate("/main");
                   }}
                 >
-                  Recipes
+                  Find Recipe
                 </a>
               </li>
               <li>
@@ -46,7 +46,7 @@ export const Header = () => {
                     navigate("/fridge");
                   }}
                 >
-                  Fridge
+                  My Fridge
                 </a>
               </li>
             </ul>
@@ -55,7 +55,7 @@ export const Header = () => {
 
         <div className="order-1 md:order-2">
           <a
-            className="flex items-center tracking-wide no-underline hover:no-underline font-bold  text-xl cursor-pointer"
+            className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-2xl cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
               navigate("/main");

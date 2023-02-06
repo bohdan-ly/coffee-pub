@@ -20,7 +20,7 @@ export const Recipes: React.FC<{ toolbar: React.ReactNode }> = ({
   return (
     <div className="container mx-auto flex flex-col pt-4 pb-12 md:overflow-hidden">
       {toolbar}
-      <div className="mx-auto flex items-center flex-wrap md:overflow-y-auto h-full pb-5">
+      <div className="mx-auto flex flex-wrap md:overflow-y-auto h-full pb-5 pt-2">
         {recipesList.map((rec, idx: number) => (
           <RecipeCard key={`${rec.idMeal}_${idx}`} recipe={rec} />
         ))}

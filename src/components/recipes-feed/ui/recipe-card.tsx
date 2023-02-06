@@ -21,15 +21,15 @@ export const RecipeCard: React.FC<{
 
   return (
     <div
-      className="w-full md:w-1/3 xl:w-1/4 md:p-6 flex flex-col hover:shadow-lg rounded-md"
+      className="w-full md:w-1/3 xl:w-1/4 md:p-6 flex flex-col hover:shadow-lg rounded-md hover:-translate-y-1 hover:scale-102 hover:bg-indigo-400 dark:hover:bg-yellow-500 duration-300"
       onClick={handleSelectRecipe}
     >
       <a href="#">
-        <img className="rounded-md" src={recipe.strMealThumb} />
-        <div className="pt-3 flex items-center justify-between">
-          <p className="text-white">{recipe.strMeal}</p>
+        <img src={recipe.strMealThumb} />
+        <div className="flex justify-between items-center pt-3 pb-3">
+          <p className="text-white pr-4">{recipe.strMeal}</p>
           <svg
-            className="h-6 w-6 fill-current text-yellow-500 hover:text-black"
+            className="fill-current text-yellow-500 hover:text-black h-6 w-6"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >

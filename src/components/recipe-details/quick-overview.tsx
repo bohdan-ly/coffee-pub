@@ -1,27 +1,17 @@
 import { YoutubeEmbed } from "components/youtube-embed";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "shared/hooks/global";
+import { useAppDispatch } from "shared/hooks/global";
 import { CloseIcon, ExpandIcon } from "shared/icons";
-import { selectRecipeDetails } from "store/recipes/selector";
 import { setRecipe } from "store/recipes/slice";
-import { Ingredients } from "store/recipes/types";
+import { Ingredients, RecipeDetails } from "store/recipes/types";
 
-export const RecipeOverview = () => {
+export type Props = {
+  recipe: RecipeDetails,
+};
+
+export const RecipeOverview:React.FC<Props> = ({ recipe }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const recipe = useAppSelector((store) => selectRecipeDetails(store)) || {
-    idMeal: "",
-    strMeal: "Unknown",
-    strYoutube: "",
-    strMealThumb: "",
-    tags: [],
-    strArea: "",
-    strCategory: "",
-    strInstructions: "",
-    strSource: "",
-    ingredients: {},
-  };
 
   const handleCloseRecipe = () => {
     dispatch(setRecipe(null));
@@ -35,20 +25,24 @@ export const RecipeOverview = () => {
           : "md:basis-1/3 opacity-100"
       }`}
     >
-      <ExpandIcon
-        className="absolute right-0 top-10 w-8 cursor-pointer rounded-full hover:bg-yellow-600 p-1"
-        onClick={() => navigate(`/recipe/${recipe.idMeal}`)}
-      />
-      <CloseIcon
-        className="absolute right-0 top-0 w-8 cursor-pointer rounded-full hover:bg-yellow-600 p-1"
-        onClick={handleCloseRecipe}
-      />
       <div className="flex justify-center overflow-y-auto h-full">
         <div className="bg-white h-full max-w-sm overflow-hidden rounded-lg shadow-lg">
           <div className="bg-fixed bg-slate-100 dark:bg-black/[.90] flex flex-col h-full overflow-hidden">
-            <h3 className="text-3xl font-bold dark:text-white p-4 flex justify-center text-center">
-              {recipe.strMeal}
-            </h3>
+            <div className="flex flex-row justify-between items-center">
+              <h3 className="text-3xl font-bold dark:text-white p-4 flex justify-center text-center">
+                {recipe.strMeal}
+              </h3>
+              <div className="flex flex-col justify-between px-2">
+                <CloseIcon
+                  className="top-0 w-8 cursor-pointer hover:text-indigo-500 pb-2"
+                  onClick={handleCloseRecipe}
+                />
+                <ExpandIcon
+                  className="w-8 cursor-pointer hover:text-indigo-500 pb-2"
+                  onClick={() => navigate(`/recipe/${recipe.idMeal}`)}
+                />
+              </div>
+            </div>
             <a href="#">
               <YoutubeEmbed
                 url={recipe.strYoutube}
