@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
+  const navigate = useNavigate();
+
   return (
-    <nav id="header" className="w-full z-30 top-0 py-1">
+    <nav id="header" className="w-full z-1 top-0 py-1">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
         <label htmlFor="menu-toggle" className="cursor-pointer md:hidden block">
           <svg
@@ -26,18 +29,24 @@ export const Header = () => {
             <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
               <li>
                 <a
-                  className="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                  href="#"
+                  className="inline-block no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/main");
+                  }}
                 >
                   Recipes
                 </a>
               </li>
               <li>
                 <a
-                  className="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                  href="#"
+                  className="inline-block no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/fridge");
+                  }}
                 >
-                  Fridges
+                  Fridge
                 </a>
               </li>
             </ul>
@@ -46,8 +55,11 @@ export const Header = () => {
 
         <div className="order-1 md:order-2">
           <a
-            className="flex items-center tracking-wide no-underline hover:no-underline font-bold  text-xl "
-            href="#"
+            className="flex items-center tracking-wide no-underline hover:no-underline font-bold  text-xl cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/main");
+            }}
           >
             {/* <svg
               className="fill-current  mr-2"

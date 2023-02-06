@@ -14,13 +14,51 @@ const RecipesActions = (dispatch: AppDispatch) => {
           }
 
           const { meals } = (await Api.Recipes.getRecipeById(recipeId)) || {};
-          const recipe = meals?.[0] || null;
+          const meal = meals?.[0] || null;
 
-          if (recipe) {
+          if (meal) {
+            const {
+              idMeal,
+              strMeal,
+              strTags,
+              strArea,
+              strCategory,
+              strMealThumb,
+              strYoutube,
+              strInstructions,
+              strSource,
+            } = meal;
+
+            const ingredients: Record<string, string> = {};
+
+            new Array(20).fill(0).some((i, idx) => {
+              const ingredientKey = `strIngredient${idx + 1}`;
+              const measureKey = `strMeasure${idx + 1}`;
+              if (meal[ingredientKey] && meal[measureKey]) {
+                ingredients[meal[ingredientKey]] = meal[measureKey];
+                return false;
+              }
+              return true;
+            });
+
+            const recipe = {
+              idMeal,
+              strMeal,
+              strMealThumb,
+              strYoutube,
+              tags: strTags?.split(",") || [],
+              strArea,
+              strCategory,
+              strInstructions,
+              strSource,
+              ingredients,
+            };
+
             dispatch(setRecipe(recipe));
+            return recipe;
           }
 
-          return recipe;
+          return null;
         } catch (err) {
           console.error(err);
           return null;

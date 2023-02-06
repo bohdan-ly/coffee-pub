@@ -1,1 +1,2 @@
-export { RecipeDetails } from "./ui";
+export { RecipeOverview } from "./quick-overview";
+export { FullRecipe } from "./general";

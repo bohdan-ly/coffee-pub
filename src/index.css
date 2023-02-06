@@ -84,6 +84,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.ingredients-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem 3rem;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-bg: #242424;
