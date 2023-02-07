@@ -2,12 +2,16 @@ import { configureStore } from "@reduxjs/toolkit";
 import categories from "store/categories/slice";
 import recipes from "store/recipes/slice";
 import products from "store/products/slice";
+import filter from "store/filter/slice";
+import fridge from "store/fridge/slice";
 
 export const store = configureStore({
   reducer: {
     categories,
     recipes,
     products,
+    filter,
+    fridge,
   },
 });
 

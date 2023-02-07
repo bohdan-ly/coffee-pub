@@ -1,7 +1,9 @@
 import { Api } from "app/model/api";
+import { grocery_list } from "components/grocery-list/ui";
 // @ts-ignore
 import { MEAL_API } from "constants";
 import { ApiAbortController } from "shared/utils/abort-controller";
+import { Product } from "store/fridge/types";
 
 export class ApiRecipes {
   static async getRecipesByCategory(strCategory: string) {
@@ -18,6 +20,41 @@ export class ApiRecipes {
 
       if (!json.success) {
         Api.handleErrorMessage(json);
+      }
+
+      const { meals } = json;
+
+      if (!!meals?.length) {
+        const recipes = [];
+
+        for await (const recipe of meals) {
+          const { meals: mealsDetails } =
+            (await ApiRecipes.getRecipeById(recipe.idMeal)) || {};
+
+          const meal = mealsDetails?.[0] || null;
+
+          const ingredients: Record<string, string> = {};
+          new Array(20).fill(0).some((i, idx) => {
+            const ingredientKey = `strIngredient${idx + 1}`;
+            const measureKey = `strMeasure${idx + 1}`;
+            if (meal[ingredientKey] && meal[measureKey]) {
+              ingredients[meal[ingredientKey]] = meal[measureKey];
+              return false;
+            }
+            return true;
+          });
+
+          const isCookable = Object.keys(ingredients).every(
+            (i) =>
+              !!grocery_list.find(
+                (p: Product) => p.name.toLowerCase() === i.toLocaleLowerCase()
+              )
+          );
+
+          recipes.push({ ...meal, ingredients, isCookable });
+        }
+
+        return { meals: recipes };
       }
 
       return json;
