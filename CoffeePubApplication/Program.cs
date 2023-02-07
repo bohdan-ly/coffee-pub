@@ -17,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ISqliteRepositoryManager, SqliteRepositoryManager>();
 
+//builder.WebHost.UseUrls("http://localhost:80");
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -40,7 +41,6 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
 //using IHost host = Host.CreateDefaultBuilder(args)
 //    .ConfigureServices((_, services) =>
 //        services.AddSingleton<ISqliteRepositoryManager, SqliteRepositoryManager>())
