@@ -3,7 +3,7 @@ Welcome to our application! It is an interactive application for recipe searchin
 Here you can find any 500+ recipes in 20+ categories🥩
 Create your own fridge and control the products availability after every cooking!🍏
 
-## 🔗 [Let's start!](https://anastasiya145.github.io/todo-app_react/)
+## 🔗 [Let's start!](http://coffeeapplicationapi.westeurope.cloudapp.azure.com/)
 
 ## How does it work:
   - Can find a recipe by pressing on Search submit in the `input` field;
@@ -31,12 +31,13 @@ Create your own fridge and control the products availability after every cooking
   1. `Clone` the project (`https://github.com/bohdan-ly/coffee-pub`)
   2. Run `npm install` or 'npm install --global yarn' to install the dependencies
   3. Run `npm start` or 'yarn dev' to run a development server (If you need to stop the server press `ctrl + c` in the terminal window)
+  
+## Cloud Service
+  Azure was used to host the API 🔗 [Cloud Service](http://coffeeapplicationapi.westeurope.cloudapp.azure.com/)
 
 ## 🛠 Used tools:
 for Front-end part:
-+ HTML 
-+ CSS (+Tailwind framework)
-+ JavaScript
++ Tailwind CSS framework
 + Typescript
 + React (+Router and hooks)
 + Redux
@@ -44,3 +45,6 @@ for Front-end part:
 for Back-end part:
 +Asp.Net
 + Db part:SQLite
+
+## 🛠 Used APIs:
++ [Cloud Service](http://coffeeapplicationapi.westeurope.cloudapp.azure.com/)
