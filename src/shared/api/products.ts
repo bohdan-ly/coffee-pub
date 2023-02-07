@@ -21,6 +21,7 @@ export class ApiProducts {
       if (meals?.length) {
         meals.forEach((_: any, idx: number) => {
           const formattedName = meals[idx].strIngredient.replace(/ /gi, "_");
+
           meals[idx] = {
             ...meals[idx],
             image: `https://www.themealdb.com/images/ingredients/${formattedName}.png`,
