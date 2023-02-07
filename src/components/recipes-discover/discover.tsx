@@ -19,8 +19,6 @@ export const RecipesDiscover = () => {
     ingredients: {},
   };
 
-  //доделать чтобы при нажатии на лого, карточка с одним рецептом не показывалась!!!
-
   return (
     <div className="flex flex-col gap-8 h-full md:flex-row">
       <RecipesFeed />

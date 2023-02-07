@@ -20,7 +20,7 @@ export const FloatingSidebar: React.FC<{ children?: React.ReactNode }> = ({
         <button
           className="rounded-tr-lg rounded-br-lg w-14 hover:w-16 transition-all
           bg-indigo-500 hover:bg-yellow-500 rounded-l-lg text-sm px-5 py-2.5
-          dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 duration-300"
+          duration-300 dark:bg-yellow-500 dark:hover:bg-yellow-500 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           <Snowflake />
@@ -45,7 +45,7 @@ export const FloatingSidebar: React.FC<{ children?: React.ReactNode }> = ({
         role="dialog"
       >
         <h2 className="pb-6 text-2xl font-semibold">
-          List of my products:
+          I have:
         </h2>
         <ExpandIcon
           className="absolute right-0 top-10 w-8 cursor-pointer rounded-full hover:bg-yellow-600 p-1"

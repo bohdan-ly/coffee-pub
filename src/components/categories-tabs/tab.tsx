@@ -23,8 +23,8 @@ export const CategoryTab: React.FC<{
       onClick={handleCategoryClick}
     >
       <a
-        className={` inline-block border-l border-t border-r rounded-t py-2 px-4 text-white hover:text-indigo-500 ${
-          selected === category.idCategory ? "bg-indigo-300 text-indigo-500 font-semibold" : "bg-transparent"
+        className={` inline-block border-l border-t border-r rounded-t py-2 px-4 text-white hover:text-indigo-500 dark:hover:text-yellow-500 ${
+          selected === category.idCategory ? "bg-indigo-300 text-indigo-500 dark:text-white dark:bg-yellow-500 font-semibold" : "bg-transparent"
         }`}
       >
         {status === Status.LOADING ? "loading" : category.strCategory}
