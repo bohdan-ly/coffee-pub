@@ -1,7 +1,9 @@
 export type Product = {
+  image: string;
   idIngredient: string;
   strIngredient: string;
-  image: string;
+  strType: string | null;
+  strDescription: string;
 };
 
 export enum Status {

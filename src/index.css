@@ -2,23 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*::-webkit-scrollbar {
-  width: 5px;
-}
 
-*::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.2);
-  border-radius: 3px;
-}
-
-*::-webkit-scrollbar-button {
-  display: none;
-}
-
-* {
-  scrollbar-color: #e1e1e1 #f0f0f0;
-  scrollbar-width: thin;
-}
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -40,6 +24,8 @@
   --primary-color: #213547;
   --main-color: #dc9a00;
   --additional-color: rgb(99 102 241);
+  --scrollbar-bg: rgba(0, 0, 0, 0.2);
+
 
   /* ---- COLORS ----- */
   color-scheme: light dark;
@@ -47,6 +33,24 @@
   background-image: var(--primary-bg);
   min-height: 100vh;
 
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-bg);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+}
+
+* {
+  scrollbar-color: #e1e1e1 #f0f0f0;
+  scrollbar-width: thin;
 }
 
 a {
@@ -113,6 +117,7 @@ button:focus-visible {
   :root {
     --primary-bg: #242424;
     --primary-color: rgba(255, 255, 255, 0.87);
+    --scrollbar-bg: #dc9a00;
   }
 
   a:hover {
