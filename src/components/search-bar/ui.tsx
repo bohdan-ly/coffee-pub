@@ -48,7 +48,7 @@ export const SearchBar = () => {
 
       <button
         type="submit"
-        className="duration-300 transition inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-indigo-500 rounded-lg border border-indigo-500 hover:bg-yellow-500 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="focus:outline-none duration-300 transition inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-indigo-500 rounded-lg hover:bg-yellow-500 dark:bg-yellow-500 dark:hover:bg-yellow-500"
       >
         <Search />
         Search
