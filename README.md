@@ -44,4 +44,4 @@ for Back-end part:
 + Db part:SQLite
 
 ## 🛠 Used APIs:
-+ [Cloud Service](http://coffeeapplicationapi.westeurope.cloudapp.azure.com/)
++ [The MealDB](https://www.themealdb.com/api.php)
