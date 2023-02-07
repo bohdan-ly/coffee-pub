@@ -1,12 +1,15 @@
 import { YoutubeEmbed } from "components/youtube-embed";
 import { useAppDispatch, useAppSelector } from "shared/hooks/global";
 import { CloseIcon, ExpandIcon } from "shared/icons";
+import { selectFridgeProducts } from "store/fridge/selector";
 import { selectRecipeDetails } from "store/recipes/selector";
 import { setRecipe } from "store/recipes/slice";
 import { Ingredients, RecipeDetails } from "store/recipes/types";
 
 export const FullRecipe: React.FC<{ recipe: RecipeDetails }> = ({ recipe }) => {
   const dispatch = useAppDispatch();
+
+  const products = useAppSelector(selectFridgeProducts);
 
   const handleCloseRecipe = () => {
     dispatch(setRecipe(null));
@@ -55,17 +58,30 @@ export const FullRecipe: React.FC<{ recipe: RecipeDetails }> = ({ recipe }) => {
                     <table className="w-full table-fixed text-left">
                       <tbody className="align-baseline ingredients-list">
                         {Object.keys(recipe.ingredients || {}).map(
-                          (ingredientKey) => (
-                            <tr
-                              key={ingredientKey}
-                              className="flex align-middle justify-between w-full"
-                            >
-                              <td className="">{ingredientKey}</td>
-                              <td className="flex align-middle">
-                                {(recipe.ingredients as Ingredients)[ingredientKey]}
-                              </td>
-                            </tr>
-                          )
+                          (ingredientKey) => {
+                            const isAvailable = products.find(
+                              (p) =>
+                                p.name?.toLocaleLowerCase() ===
+                                ingredientKey.toLocaleLowerCase()
+                            );
+                            return (
+                              <tr
+                                key={ingredientKey}
+                                className={`flex align-middle justify-between w-full ${
+                                  isAvailable ? "" : "text-orange-400"
+                                }`}
+                              >
+                                <td className="">{ingredientKey}</td>
+                                <td className="flex align-middle">
+                                  {isAvailable
+                                    ? (recipe.ingredients as Ingredients)[
+                                        ingredientKey
+                                      ]
+                                    : "Not enoughs"}
+                                </td>
+                              </tr>
+                            );
+                          }
                         )}
                       </tbody>
                     </table>

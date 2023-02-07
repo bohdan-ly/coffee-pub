@@ -2,12 +2,7 @@ import React from "react";
 import { useAppDispatch } from "shared/hooks/global";
 import { RecipesActions } from "store/recipes/actions";
 import { fetchRecipeDetails } from "store/recipes/slice";
-
-type Recipe = {
-  idMeal: string;
-  strMeal: string;
-  strMealThumb: string;
-};
+import { Recipe } from "store/recipes/types";
 
 export const RecipeCard: React.FC<{
   recipe: Recipe;
@@ -21,7 +16,9 @@ export const RecipeCard: React.FC<{
 
   return (
     <div
-      className="w-full md:w-1/3 xl:w-1/4 md:p-6 flex flex-col hover:shadow-lg rounded-md hover:-translate-y-1 hover:scale-102 hover:bg-indigo-400 dark:hover:bg-yellow-500 duration-300"
+      className={`${
+        recipe.isCookable ? "" : "grayscale"
+      } w-full md:w-1/3 xl:w-1/4 md:p-6 flex flex-col hover:shadow-lg rounded-md hover:-translate-y-1 hover:scale-102 hover:bg-indigo-400 dark:hover:bg-yellow-500 duration-300`}
       onClick={handleSelectRecipe}
     >
       <a href="#">

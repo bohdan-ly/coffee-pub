@@ -1,17 +1,20 @@
 import { YoutubeEmbed } from "components/youtube-embed";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "shared/hooks/global";
+import { useAppDispatch, useAppSelector } from "shared/hooks/global";
 import { CloseIcon, ExpandIcon } from "shared/icons";
+import { selectFridgeProducts } from "store/fridge/selector";
 import { setRecipe } from "store/recipes/slice";
 import { Ingredients, RecipeDetails } from "store/recipes/types";
 
 export type Props = {
-  recipe: RecipeDetails,
+  recipe: RecipeDetails;
 };
 
-export const RecipeOverview:React.FC<Props> = ({ recipe }) => {
+export const RecipeOverview: React.FC<Props> = ({ recipe }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const products = useAppSelector(selectFridgeProducts);
 
   const handleCloseRecipe = () => {
     dispatch(setRecipe(null));
@@ -73,14 +76,28 @@ export const RecipeOverview:React.FC<Props> = ({ recipe }) => {
                 <tbody className="align-baseline">
                   {Object.keys(recipe.ingredients || {})
                     .slice(0, 3)
-                    .map((ingredientKey) => (
-                      <tr key={ingredientKey}>
-                        <td className="py-2">{ingredientKey}</td>
-                        <td>
-                          {(recipe.ingredients as Ingredients)[ingredientKey]}
-                        </td>
-                      </tr>
-                    ))}
+                    .map((ingredientKey) => {
+                      const isAvailable = products.find(
+                        (p) =>
+                          p.name?.toLocaleLowerCase() ===
+                          ingredientKey.toLocaleLowerCase()
+                      );
+                      return (
+                        <tr
+                          key={ingredientKey}
+                          className={isAvailable ? "" : "text-orange-400"}
+                        >
+                          <td className="py-2">{ingredientKey}</td>
+                          <td>
+                            {isAvailable
+                              ? (recipe.ingredients as Ingredients)[
+                                  ingredientKey
+                                ]
+                              : "Not enoughs"}
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
 

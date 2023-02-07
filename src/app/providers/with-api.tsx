@@ -3,6 +3,7 @@ import LoadingBar from "react-top-loading-bar";
 import { useAppDispatch } from "shared/hooks/global";
 import { fetchCategories } from "store/categories/slice";
 import { Category } from "store/categories/types";
+import { fetchFridgeProducts } from "store/fridge/slice";
 import { fetchProducts } from "store/products/slice";
 import { fetchRecipes } from "store/recipes/slice";
 // import { getUser } from "~selectors/userSelectors";
@@ -59,15 +60,19 @@ export const ConnectAPI: React.FC<{ children: React.ReactNode }> = ({
 
     setProgress(25);
 
+    await dispatch(fetchProducts({}));
+
+    setProgress(50);
+
     await dispatch(
       fetchRecipes({
         strCategory: (categoriesPayload as Category[])[0].strCategory,
       })
     );
 
-    setProgress(50);
+    setProgress(75);
 
-    await dispatch(fetchProducts({}));
+    await dispatch(fetchFridgeProducts({}));
 
     setProgress(100);
   };

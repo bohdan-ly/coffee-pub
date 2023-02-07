@@ -2,6 +2,8 @@ export type Recipe = {
   idMeal: string;
   strMeal: string;
   strMealThumb: string;
+  isCookable: boolean;
+  ingredients: Record<string, string>;
 };
 
 export type Ingredients = Record<string, string>;

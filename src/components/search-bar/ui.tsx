@@ -1,57 +1,56 @@
 import React from "react";
+import { useAppDispatch, useAppSelector } from "shared/hooks/global";
+import { CloseIcon, Search } from "shared/icons";
+import { selectFilterQuery } from "store/filter/selector";
+import { setQuery } from "store/filter/slice";
 
 export const SearchBar = () => {
-  const onSubmit = (ev:React.FormEvent<HTMLButtonElement>) => {
+  const dispatch = useAppDispatch();
+  const query = useAppSelector(selectFilterQuery);
+  const [search, setSearch] = React.useState(query || "");
+
+  const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-  }
+    if (!!search) {
+      const _query = search.trim();
+      dispatch(setQuery(_query));
+    }
+  };
 
   return (
-    <form className="flex items-center">
+    <form className="flex items-center" onSubmit={(ev) => ev && onSubmit(ev)}>
       <label className="sr-only">Search</label>
       <div className="relative w-full">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <svg
-            aria-hidden="true"
-            className="w-5 h-5 text-gray-500 dark:text-gray-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
+          <Search className="w-5 h-5 text-gray-500 dark:text-gray-400" />
         </div>
         <input
+          value={search}
           type="text"
           id="voice-search"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search Recipe"
           required
+          onChange={(e) => setSearch(e.target.value)}
         />
+        {!!search.trim() && (
+          <CloseIcon
+            width={20}
+            height={20}
+            className="absolute right-2 top-[50%] -translate-y-[50%] cursor-pointer text-gray-500 dark:text-gray-400"
+            onClick={() => {
+              setSearch("");
+              dispatch(setQuery(""));
+            }}
+          />
+        )}
       </div>
+
       <button
         type="submit"
         className="duration-300 transition inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-indigo-500 rounded-lg border border-indigo-500 hover:bg-yellow-500 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        onSubmit={(ev) => onSubmit(ev)}
       >
-        <svg
-          aria-hidden="true"
-          className="w-5 h-5 mr-2 -ml-1"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          ></path>
-        </svg>
+        <Search />
         Search
       </button>
     </form>
