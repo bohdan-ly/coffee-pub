@@ -13,6 +13,7 @@ export const PATHS = {
   main: {
     root: "/main",
     fridge: "/fridge",
+    shop: "/shop",
     recipe: "/recipe/:recipeId",
   },
   error: {
