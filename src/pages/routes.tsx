@@ -3,7 +3,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 
 import { PATHS } from "shared/navigation";
 
-import MainPage from "pages/main";
+// import MainPage from "pages/main";
 
 // import { AccessDeniedPage } from "./access-denied";
 // import { ServerErrorPage } from "./server-error";
@@ -19,6 +19,7 @@ const lazyLoad = (loadedModule: () => Promise<{ default: React.FC }>) =>
     })
   );
 
+const MainPage = lazyLoad(() => import("./main"));
 const RecipePage = lazyLoad(() => import("./recipe"));
 const FridgePage = lazyLoad(() => import("./fridge"));
 const ShopPage = lazyLoad(() => import("./shop"));

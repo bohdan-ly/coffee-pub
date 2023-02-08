@@ -60,7 +60,7 @@ export const Header = () => {
         <div className="order-1 md:order-2">
           <a
             href="/main"
-            className="dark:text-yellow-500 dark:hover:text-indigo-500 flex items-center tracking-wide no-underline hover:no-underline font-bold text-2xl cursor-pointer"
+            className="dark:text-white dark:hover:text-indigo-500 flex items-center tracking-wide no-underline hover:no-underline font-bold text-2xl cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
               navigate("/main");
