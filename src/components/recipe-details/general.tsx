@@ -35,7 +35,7 @@ export const FullRecipe: React.FC<{ recipe: RecipeDetails }> = ({ recipe }) => {
   };
 
   return (
-    <section className="flex flex-col h-full p-8 overflow-y-auto">
+    <section className="flex flex-col h-full p-8 overflow-y-auto mb-20 md:md-0">
       <div className="container pt-6 mx-auto">
         <div className="mx-auto flex flex-wrap">
           <div className="flex gap-8 flex-wrap md:flex-nowrap">

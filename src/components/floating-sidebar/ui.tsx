@@ -18,7 +18,7 @@ export const FloatingSidebar: React.FC<{ children?: React.ReactNode }> = ({
 
   return (
     <>
-      <div className="text-center absolute right-12 top-1 md:right-0 md:top-20 z-10">
+      <div className="text-center absolute  bottom-5 left-0 right-0 md:right-0 md:top-20 z-10">
         <button
           aria-label="fridge"
           className="rounded-tr-lg rounded-br-lg p-2 md:w-14 hover:w-16 transition-all
