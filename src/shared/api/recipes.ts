@@ -1,12 +1,11 @@
 import { Api } from "app/model/api";
-import { grocery_list } from "components/grocery-list/ui";
 // @ts-ignore
 import { MEAL_API } from "constants";
 import { ApiAbortController } from "shared/utils/abort-controller";
 import { Product } from "store/fridge/types";
 
 export class ApiRecipes {
-  static async getRecipesByCategory(strCategory: string) {
+  static async getRecipesByCategory(strCategory: string, products: Product[]) {
     try {
       const json = await Api.fetchRetry(
         `${MEAL_API}/filter.php?c=${strCategory}`,
@@ -46,7 +45,7 @@ export class ApiRecipes {
 
           const isCookable = Object.keys(ingredients).every(
             (i) =>
-              !!grocery_list.find(
+              !!products.find(
                 (p: Product) => p.name.toLowerCase() === i.toLocaleLowerCase()
               )
           );

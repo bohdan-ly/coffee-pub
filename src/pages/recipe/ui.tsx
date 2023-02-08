@@ -1,7 +1,6 @@
 import { FloatingSidebar } from "components/floating-sidebar";
 import Header from "components/header";
 import { FullRecipe } from "components/recipe-details";
-import SearchBar from "components/search-bar";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "shared/hooks/global";

@@ -11,7 +11,7 @@ export const FridgePage: React.FC = () => {
         List of my products:
       </h2>
       <FloatingSidebar />
-      <section className="flex justify-center align-middle h-full py-12">
+      <section className="flex justify-center align-middle h-full my-12 overflow-y-auto">
         <GroceryList />
       </section>
     </div>

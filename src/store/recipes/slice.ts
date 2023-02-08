@@ -1,14 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Api } from "app/model/api";
+import { Product } from "store/fridge/types";
 import { Recipe, RecipeDetails, RecipeSliceState, Status } from "./types";
 
-export const fetchRecipes = createAsyncThunk<Recipe[], Record<string, string>>(
-  "recipes/fetchRecipes",
-  async ({ strCategory }) => {
-    const { meals } = await Api.Recipes.getRecipesByCategory(strCategory);
-    return meals;
-  }
-);
+export const fetchRecipes = createAsyncThunk<
+  Recipe[],
+  { strCategory: string; products: Product[] }
+>("recipes/fetchRecipes", async ({ strCategory, products }) => {
+  const { meals } = await Api.Recipes.getRecipesByCategory(
+    strCategory,
+    products
+  );
+  return meals;
+});
 
 export const fetchRecipeDetails = createAsyncThunk<
   Recipe,

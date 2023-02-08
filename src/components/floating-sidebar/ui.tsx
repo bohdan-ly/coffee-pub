@@ -16,7 +16,7 @@ export const FloatingSidebar: React.FC<{ children?: React.ReactNode }> = ({
 
   return (
     <>
-      <div className="text-center absolute right-0 top-20">
+      <div className="text-center absolute right-0 top-20 z-10">
         <button
           className="rounded-tr-lg rounded-br-lg w-14 hover:w-16 transition-all
           bg-indigo-500 hover:bg-yellow-500 rounded-l-lg text-sm px-5 py-2.5
@@ -37,16 +37,14 @@ export const FloatingSidebar: React.FC<{ children?: React.ReactNode }> = ({
       )}
       <div
         id="drawer-navigation"
-        className={`fixed top-0 right-0 z-40  h-screen p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 ${
-          isOpen ? "transform-none w-4/12" : "translate-x-full"
+        className={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 ${
+          isOpen ? "transform-none w-full md:w-4/12" : "translate-x-full"
         }`}
         tabIndex={-1}
         aria-modal={true}
         role="dialog"
       >
-        <h2 className="pb-6 text-2xl font-semibold">
-          I have:
-        </h2>
+        <h2 className="pb-6 text-2xl font-semibold">I have:</h2>
         <ExpandIcon
           className="absolute right-0 top-10 w-8 cursor-pointer rounded-full hover:bg-yellow-600 p-1"
           onClick={() => navigate(`/fridge`)}

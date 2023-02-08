@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
 import { RecipeOverview } from "components/recipe-details";
 import { RecipesFeed } from "components/recipes-feed";
-import { useAppDispatch, useAppSelector } from "shared/hooks/global";
+import { useAppSelector } from "shared/hooks/global";
 import { selectRecipeDetails } from "store/recipes/selector";
-import { setRecipe } from "store/recipes/slice";
 
 export const RecipesDiscover = () => {
   const recipe = useAppSelector((store) => selectRecipeDetails(store)) || {

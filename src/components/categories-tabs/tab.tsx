@@ -1,7 +1,8 @@
 import React from "react";
-import { useAppDispatch } from "shared/hooks/global";
+import { useAppDispatch, useAppSelector } from "shared/hooks/global";
 import { setCategoryId } from "store/categories/slice";
 import { Category, Status } from "store/categories/types";
+import { selectFridgeProducts } from "store/fridge/selector";
 import { fetchRecipes } from "store/recipes/slice";
 
 export const CategoryTab: React.FC<{
@@ -11,10 +12,12 @@ export const CategoryTab: React.FC<{
 }> = ({ category, status, selected }) => {
   const dispatch = useAppDispatch();
 
+  const products = useAppSelector(selectFridgeProducts);
+
   const handleCategoryClick = () => {
     const { idCategory, strCategory } = category;
     dispatch(setCategoryId(idCategory));
-    dispatch(fetchRecipes({ strCategory }));
+    dispatch(fetchRecipes({ strCategory, products }));
   };
 
   return (
@@ -23,8 +26,10 @@ export const CategoryTab: React.FC<{
       onClick={handleCategoryClick}
     >
       <a
-        className={` inline-block border-l border-t border-r rounded-t py-2 px-4 text-white hover:text-indigo-500 dark:hover:text-yellow-500 ${
-          selected === category.idCategory ? "bg-indigo-300 text-indigo-500 dark:text-white dark:bg-yellow-500 font-semibold" : "bg-transparent"
+        className={`inline-block border-l border-t border-r rounded-t py-2 px-4 text-white hover:text-indigo-500 dark:hover:text-white ${
+          selected === category.idCategory
+            ? "bg-indigo-300 text-indigo-500 dark:text-white dark:bg-yellow-500 font-semibold"
+            : "bg-transparent"
         }`}
       >
         {status === Status.LOADING ? "loading" : category.strCategory}

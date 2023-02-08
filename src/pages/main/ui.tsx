@@ -12,7 +12,7 @@ export const MainPage: React.FC = () => {
       <FloatingSidebar />
       <section className="flex flex-col h-full md:overflow-hidden p-8 overflow-y-auto">
         <div className="flex flex-row justify-center">
-          <div className="md:basis-2/4">
+          <div className="w-full md:basis-2/4">
             <SearchBar />
             <br />
           </div>

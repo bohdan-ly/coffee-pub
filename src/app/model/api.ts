@@ -1,12 +1,13 @@
 import originalFetch from "isomorphic-fetch";
 import fetchBuilder from "fetch-retry";
 import { notify } from "app/providers/with-notifications";
-import { ApiCategories, ApiProducts, ApiRecipes } from "shared/api";
+import { ApiCategories, ApiProducts, ApiRecipes, ApiFridge } from "shared/api";
 
 export class Api {
   static Categories = ApiCategories;
   static Recipes = ApiRecipes;
   static Products = ApiProducts;
+  static Fridge = ApiFridge;
   // static Auth = ApiAuth;
 
   static handleErrorMessage(obj: {

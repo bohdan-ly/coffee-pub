@@ -1,8 +1,8 @@
+import { notify } from "app/providers/with-notifications";
 import { YoutubeEmbed } from "components/youtube-embed";
 import { useAppDispatch, useAppSelector } from "shared/hooks/global";
-import { CloseIcon, ExpandIcon } from "shared/icons";
 import { selectFridgeProducts } from "store/fridge/selector";
-import { selectRecipeDetails } from "store/recipes/selector";
+import { removeBatch } from "store/fridge/slice";
 import { setRecipe } from "store/recipes/slice";
 import { Ingredients, RecipeDetails } from "store/recipes/types";
 
@@ -13,6 +13,25 @@ export const FullRecipe: React.FC<{ recipe: RecipeDetails }> = ({ recipe }) => {
 
   const handleCloseRecipe = () => {
     dispatch(setRecipe(null));
+  };
+
+  const handleCook = () => {
+    const ids = Object.keys(recipe.ingredients || {}).reduce(
+      (a: string[], v) => {
+        const ingrd = products.find(
+          (p) => p.name.toLocaleLowerCase() === v.toLocaleLowerCase()
+        );
+        if (ingrd) {
+          a.push(ingrd.id);
+        }
+        return a;
+      },
+      []
+    );
+    if (ids.length === Object.keys(recipe.ingredients || {}).length) {
+      dispatch(removeBatch(ids));
+    }
+    notify({ message: "Dish was cooked successfully. Good job", type: 200 });
   };
 
   return (
@@ -30,6 +49,14 @@ export const FullRecipe: React.FC<{ recipe: RecipeDetails }> = ({ recipe }) => {
                     url={recipe.strYoutube}
                     fallbackSrc={recipe.strMealThumb}
                   />
+                  <button
+                    onClick={recipe.isCookable ? handleCook : () => {}}
+                    className={`text-white bg-indigo-500 p-2 text-sm font-medium ${
+                      recipe.isCookable ? "" : "opacity-75 pointer-events-none"
+                    }`}
+                  >
+                    Cook
+                  </button>
                 </div>
                 <div className="flex flex-col w-full lg:w-1/2">
                   <div className="flex flex-col w-full lg:w-1/2">

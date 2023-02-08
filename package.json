@@ -21,13 +21,15 @@
     "compose-function": "^3.0.3",
     "fetch-retry": "^5.0.3",
     "isomorphic-fetch": "^3.0.0",
+    "localforage": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lazy-load-image-component": "^1.5.6",
     "react-notifications-component": "^4.0.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
-    "react-top-loading-bar": "^2.3.1"
+    "react-top-loading-bar": "^2.3.1",
+    "use-debounce": "^9.0.3"
   },
   "devDependencies": {
     "@types/compose-function": "^0.0.30",

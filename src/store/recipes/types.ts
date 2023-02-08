@@ -19,6 +19,7 @@ export type RecipeDetails = {
   strInstructions: string;
   ingredients: Ingredients;
   strSource: string;
+  isCookable?: boolean;
 };
 
 export enum Status {

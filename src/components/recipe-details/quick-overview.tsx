@@ -6,11 +6,9 @@ import { selectFridgeProducts } from "store/fridge/selector";
 import { setRecipe } from "store/recipes/slice";
 import { Ingredients, RecipeDetails } from "store/recipes/types";
 
-export type Props = {
+export const RecipeOverview: React.FC<{
   recipe: RecipeDetails;
-};
-
-export const RecipeOverview: React.FC<Props> = ({ recipe }) => {
+}> = ({ recipe }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

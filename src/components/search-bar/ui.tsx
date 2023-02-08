@@ -18,7 +18,10 @@ export const SearchBar = () => {
   };
 
   return (
-    <form className="flex items-center" onSubmit={(ev) => ev && onSubmit(ev)}>
+    <form
+      className="flex items-center flex-col md:flex-row"
+      onSubmit={(ev) => ev && onSubmit(ev)}
+    >
       <label className="sr-only">Search</label>
       <div className="relative w-full">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -48,7 +51,7 @@ export const SearchBar = () => {
 
       <button
         type="submit"
-        className="focus:outline-none duration-300 transition inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-indigo-500 rounded-lg hover:bg-yellow-500 dark:bg-yellow-500 dark:hover:bg-yellow-500"
+        className="mt-5 md:mt-0 focus:outline-none duration-300 transition inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-indigo-500 rounded-lg hover:bg-yellow-500 dark:bg-yellow-500 dark:hover:bg-yellow-500"
       >
         <Search />
         Search

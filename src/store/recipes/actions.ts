@@ -72,7 +72,7 @@ const RecipesActions = (dispatch: AppDispatch) => {
     getExtendedRecipes: async (category: string): Promise<Recipe[] | null> => {
       try {
         const { meals } =
-          (await Api.Recipes.getRecipesByCategory(category)) || {};
+          (await Api.Recipes.getRecipesByCategory(category, [])) || {};
 
         if (!!meals?.length) {
           const recipes = [];

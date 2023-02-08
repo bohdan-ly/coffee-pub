@@ -1,32 +1,34 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useMediaLayout } from "shared/hooks/mobile";
+import { Menu } from "shared/icons";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const isMobile = useMediaLayout();
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <nav id="header" className="w-full z-1 top-0 py-1">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
-        <label htmlFor="menu-toggle" className="cursor-pointer md:hidden block">
-          <svg
-            className="fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-          >
-            <title>menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-          </svg>
+        <label
+          htmlFor="menu-toggle"
+          className="cursor-pointer md:hidden block"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <Menu />
         </label>
         <input className="hidden" type="checkbox" id="menu-toggle" />
 
         <div
-          className="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1"
+          className={`absolute left-0 top-10 z-10 m-5 w-[90%] md:h-full md:top-0 md:relative md:m-0 md:flex md:items-center md:w-auto order-3 md:order-1 transform-all duration-500 rounded-lg mt-6 bg-black/[.90] md:bg-transparent ${
+            isMobile &&
+            (isOpen ? "translate-x-0 opacity-1" : "-translate-x-80 opacity-0")
+          }`}
           id="menu"
         >
           <nav>
-            <ul className="md:flex items-center justify-between text-base pt-4 md:pt-0">
+            <ul className="md:flex items-center justify-between text-base md:pt-0">
               <li>
                 <a
                   className="inline-block dark:text-yellow-500 dark:hover:text-indigo-500 no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
@@ -61,12 +63,12 @@ export const Header = () => {
               navigate("/main");
             }}
           >
-            Fridgefy
+            Coffee Pub
           </a>
         </div>
 
         <div className="order-2 md:order-3 flex items-center" id="nav-content">
-          <a className="inline-block no-underline hover:text-black" href="#">
+          {/* <a className="inline-block no-underline hover:text-black" href="#">
             <svg
               className="fill-current hover:text-black dark:text-yellow-500 dark:hover:text-indigo-500 "
               xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +79,7 @@ export const Header = () => {
               <circle fill="none" cx="12" cy="7" r="3" />
               <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
             </svg>
-          </a>
+          </a> */}
 
           <a
             className="pl-3 inline-block no-underline cursor-pointer"

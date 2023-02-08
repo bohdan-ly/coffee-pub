@@ -4,6 +4,7 @@ import { useAppDispatch } from "shared/hooks/global";
 import { fetchCategories } from "store/categories/slice";
 import { Category } from "store/categories/types";
 import { fetchFridgeProducts } from "store/fridge/slice";
+import { Product } from "store/fridge/types";
 import { fetchProducts } from "store/products/slice";
 import { fetchRecipes } from "store/recipes/slice";
 // import { getUser } from "~selectors/userSelectors";
@@ -64,15 +65,16 @@ export const ConnectAPI: React.FC<{ children: React.ReactNode }> = ({
 
     setProgress(50);
 
-    await dispatch(
-      fetchRecipes({
-        strCategory: (categoriesPayload as Category[])[0].strCategory,
-      })
-    );
+    const {payload: fridgeProducts} = await dispatch(fetchFridgeProducts({}));
 
     setProgress(75);
 
-    await dispatch(fetchFridgeProducts({}));
+    await dispatch(
+      fetchRecipes({
+        strCategory: (categoriesPayload as Category[])[0].strCategory,
+        products: fridgeProducts as Product[],
+      })
+    );
 
     setProgress(100);
   };
