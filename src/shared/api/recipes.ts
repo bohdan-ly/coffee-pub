@@ -3,6 +3,7 @@ import { Api } from "app/model/api";
 import { MEAL_API } from "constants";
 import { ApiAbortController } from "shared/utils/abort-controller";
 import { Product } from "store/fridge/types";
+import { Recipe } from "store/recipes/types";
 
 export class ApiRecipes {
   static async getRecipesByCategory(strCategory: string, products: Product[]) {
@@ -24,13 +25,15 @@ export class ApiRecipes {
       const { meals } = json;
 
       if (!!meals?.length) {
-        const recipes = [];
+        const recipes: Recipe[] = [];
+        const promises = meals.map((recipe: { idMeal: string }) =>
+          ApiRecipes.getRecipeById(recipe.idMeal)
+        );
 
-        for await (const recipe of meals) {
-          const { meals: mealsDetails } =
-            (await ApiRecipes.getRecipeById(recipe.idMeal)) || {};
+        const details = await Promise.all(promises);
 
-          const meal = mealsDetails?.[0] || null;
+        details.forEach((mealsDetails) => {
+          const meal = mealsDetails.meals?.[0] || {};
 
           const ingredients: Record<string, string> = {};
           new Array(20).fill(0).some((i, idx) => {
@@ -42,16 +45,11 @@ export class ApiRecipes {
             }
             return true;
           });
-
-          const isCookable = Object.keys(ingredients).every(
-            (i) =>
-              !!products.find(
-                (p: Product) => p.name.toLowerCase() === i.toLocaleLowerCase()
-              )
+          const recipe = meals.find(
+            (m: { idMeal: any }) => meal.idMeal === m.idMeal
           );
-
-          recipes.push({ ...meal, ingredients, isCookable });
-        }
+          recipes.push({ ...recipe, ingredients, isCookable: false });
+        });
 
         return { meals: recipes };
       }
