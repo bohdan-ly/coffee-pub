@@ -26,9 +26,11 @@ export const CategoryTab: React.FC<{
       onClick={handleCategoryClick}
     >
       <a
+        href={`/main?category=${category.strCategory}`}
+        onClick={(e) => e.preventDefault()}
         className={`inline-block border-l border-t border-r rounded-t py-2 px-4 text-white hover:text-indigo-500 dark:hover:text-white ${
           selected === category.idCategory
-            ? "bg-indigo-300 text-indigo-500 dark:text-white dark:bg-yellow-500 font-semibold"
+            ? "bg-indigo-300 dark:text-white dark:bg-yellow-500 font-semibold"
             : "bg-transparent"
         }`}
       >

@@ -50,6 +50,7 @@ export const FullRecipe: React.FC<{ recipe: RecipeDetails }> = ({ recipe }) => {
                     fallbackSrc={recipe.strMealThumb}
                   />
                   <button
+                    aria-label="cook"
                     onClick={recipe.isCookable ? handleCook : () => {}}
                     className={`text-white bg-indigo-500 p-2 text-sm font-medium ${
                       recipe.isCookable ? "" : "opacity-75 pointer-events-none"

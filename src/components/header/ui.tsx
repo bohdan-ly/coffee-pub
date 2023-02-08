@@ -10,7 +10,7 @@ export const Header = () => {
 
   return (
     <nav id="header" className="w-full z-1 top-0 py-1">
-      <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
+      <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-3 md:px-6 py-3">
         <label
           htmlFor="menu-toggle"
           className="cursor-pointer md:hidden block"
@@ -31,6 +31,7 @@ export const Header = () => {
             <ul className="md:flex items-center justify-between text-base md:pt-0">
               <li>
                 <a
+                  href="/main"
                   className="inline-block dark:text-yellow-500 dark:hover:text-indigo-500 no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
                   onClick={(e) => {
                     e.preventDefault();
@@ -42,6 +43,7 @@ export const Header = () => {
               </li>
               <li>
                 <a
+                  href="/fridge"
                   className="inline-block dark:text-yellow-500 dark:hover:text-indigo-500 no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
                   onClick={(e) => {
                     e.preventDefault();
@@ -57,6 +59,7 @@ export const Header = () => {
 
         <div className="order-1 md:order-2">
           <a
+            href="/main"
             className="dark:text-yellow-500 dark:hover:text-indigo-500 flex items-center tracking-wide no-underline hover:no-underline font-bold text-2xl cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
@@ -82,6 +85,7 @@ export const Header = () => {
           </a> */}
 
           <a
+            href="/shop"
             className="pl-3 inline-block no-underline cursor-pointer"
             onClick={(e) => {
               e.preventDefault();

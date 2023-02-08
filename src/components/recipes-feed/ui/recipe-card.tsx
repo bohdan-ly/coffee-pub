@@ -33,19 +33,17 @@ export const RecipeCard: React.FC<{
       } w-full mb-5 md:mb-0 md:w-1/3 xl:w-1/4 md:p-6 flex flex-col hover:shadow-lg rounded-md hover:-translate-y-1 hover:scale-102 hover:bg-indigo-400 dark:hover:bg-yellow-500 duration-300`}
       onClick={handleSelectRecipe}
     >
-      <a href="#">
-        {status === Status.LOADING ? (
-          <>
-            <Thumbnail height="206px" />
-            <Text />
-          </>
-        ) : (
-          <>
-            <img src={recipe.strMealThumb} alt={recipe.strMeal} />
-            <p className="text-white pt-3 pb-3 text-center">{recipe.strMeal}</p>
-          </>
-        )}
-      </a>
+      {status === Status.LOADING ? (
+        <>
+          <Thumbnail height="206px" />
+          <Text />
+        </>
+      ) : (
+        <>
+          <img width='100%' height='100%' src={recipe.strMealThumb} alt={recipe.strMeal} />
+          <p className="text-white pt-3 pb-3 text-center">{recipe.strMeal}</p>
+        </>
+      )}
     </div>
   );
 };

@@ -94,6 +94,7 @@ export const ShopPage: React.FC = () => {
                           <span>{i.strIngredient}</span>
                         </div>
                         <button
+                          aria-label={`buy ${i.strIngredient}`}
                           className="text-white bg-indigo-500 p-2 text-sm font-medium"
                           onClick={() => {
                             productQueue.current.push({
@@ -148,6 +149,7 @@ export const ShopPage: React.FC = () => {
                       <span>{i.strIngredient}</span>
                     </div>
                     <button
+                      aria-label={`buy ${i.strIngredient}`}
                       className="text-white bg-indigo-500 p-2 text-sm font-medium"
                       onClick={() => {
                         productQueue.current.push({

@@ -50,8 +50,9 @@ export const SearchBar = () => {
       </div>
 
       <button
+        aria-label="search"
         type="submit"
-        className="mt-5 md:mt-0 focus:outline-none duration-300 transition inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-indigo-500 rounded-lg hover:bg-yellow-500 dark:bg-yellow-500 dark:hover:bg-yellow-500"
+        className="mt-5 md:mt-0 focus:outline-none duration-300 transition inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-black dark:text-white bg-indigo-400 rounded-lg hover:bg-yellow-500 dark:bg-yellow-500 dark:hover:bg-yellow-500"
       >
         <Search />
         Search

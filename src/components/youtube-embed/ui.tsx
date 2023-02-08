@@ -16,7 +16,15 @@ export const YoutubeEmbed: React.FC<{
   const emberIframe = () => {
     const url = buildYouTubeEmbedUrl(videoId || "", options || "");
     if (!url)
-      return <img className="" src={fallbackSrc} alt="youtube fallback" />;
+      return (
+        <img
+          width="100%"
+          height="100%"
+          className=""
+          src={fallbackSrc}
+          alt="youtube fallback"
+        />
+      );
     return <iframe className="w-full aspect-[4/3]" src={url} frameBorder="0" />;
   };
 
@@ -24,6 +32,8 @@ export const YoutubeEmbed: React.FC<{
     emberIframe()
   ) : (
     <img
+      width="100%"
+      height="100%"
       className={fallbackClassName || ""}
       src={fallbackSrc}
       alt="youtube fallback"

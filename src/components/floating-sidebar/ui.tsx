@@ -1,6 +1,7 @@
 import { GroceryList } from "components/grocery-list";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useMediaLayout } from "shared/hooks/mobile";
 import { CloseIcon, ExpandIcon, Snowflake } from "shared/icons";
 
 export const FloatingSidebarContext = React.createContext({
@@ -12,18 +13,23 @@ export const FloatingSidebar: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
   const navigate = useNavigate();
+  const isMobile = useMediaLayout();
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <>
-      <div className="text-center absolute right-0 top-20 z-10">
+      <div className="text-center absolute right-12 top-1 md:right-0 md:top-20 z-10">
         <button
-          className="rounded-tr-lg rounded-br-lg w-14 hover:w-16 transition-all
-          bg-indigo-500 hover:bg-yellow-500 rounded-l-lg text-sm px-5 py-2.5
+          aria-label="fridge"
+          className="rounded-tr-lg rounded-br-lg p-2 md:w-14 hover:w-16 transition-all
+          bg-indigo-500 hover:bg-yellow-500 rounded-l-lg text-sm md:px-5 md:py-2.5
           duration-300 dark:bg-yellow-500 dark:hover:bg-yellow-500 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <Snowflake />
+          <Snowflake
+            width={isMobile ? "40px" : ""}
+            height={isMobile ? "40px" : ""}
+          />
         </button>
       </div>
       {isOpen && (

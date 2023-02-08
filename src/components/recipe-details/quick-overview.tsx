@@ -33,23 +33,28 @@ export const RecipeOverview: React.FC<{
               <h3 className="text-3xl font-bold dark:text-white p-4 flex justify-center text-center">
                 {recipe.strMeal}
               </h3>
-              <div className="flex flex-col justify-between px-2">
+              <div className="flex flex-col justify-between px-2 absolute right-0 top-0">
                 <CloseIcon
                   className="top-0 w-8 cursor-pointer hover:text-indigo-500 pb-2"
                   onClick={handleCloseRecipe}
                 />
-                <ExpandIcon
-                  className="w-8 cursor-pointer hover:text-indigo-500 pb-2"
-                  onClick={() => navigate(`/recipe/${recipe.idMeal}`)}
-                />
+                <a
+                  href={`/recipe/${recipe.idMeal}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(`/recipe/${recipe.idMeal}`);
+                  }}
+                >
+                  <ExpandIcon className="w-8 cursor-pointer hover:text-indigo-500 pb-2" />
+                </a>
               </div>
             </div>
-            <a href="#">
-              <YoutubeEmbed
-                url={recipe.strYoutube}
-                fallbackSrc={recipe.strMealThumb}
-              />
-            </a>
+
+            <YoutubeEmbed
+              url={recipe.strYoutube}
+              fallbackSrc={recipe.strMealThumb}
+            />
+
             <div className="px-6 pt-4">
               {(recipe.tags || []).map((tag) => (
                 <span

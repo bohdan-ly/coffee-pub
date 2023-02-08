@@ -1,8 +1,8 @@
 import React from "react";
 
 export const Snowflake: React.FC<{
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   fill?: string;
 }> = ({ width, height, fill }) => {
   return (

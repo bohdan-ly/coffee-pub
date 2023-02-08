@@ -11,7 +11,7 @@ export const ServerErrorPage: React.FC = () => {
   return (
     <div>
       <p>500: Internal Server Error</p>
-      <img src={error500} />
+      <img width="100%" height="100%" src={error500} alt="error 505" />
       <p>
         You either tried some shady route or you came here by mistake. Whichever
         it is, try using the navigation or reload page.
@@ -21,6 +21,7 @@ export const ServerErrorPage: React.FC = () => {
       </div>
       <div>
         <button
+          aria-label="reload app"
           onClick={() => {
             navigate(PATHS.root);
             window.location.reload();
